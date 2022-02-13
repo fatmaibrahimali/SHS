@@ -1,0 +1,409 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHS</title>
+    <link rel="icon" 
+    type="image/svg" 
+    href="{% static 'images/icon.svg' %}">
+    <link rel="stylesheet" href="{% static 'hover.css' %}">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserratwght@400;600&display=swap" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+
+</head>
+<body style="background-color: #f2f7fd;">
+ 
+
+  <!--
+  <button class="btn bi bi-list fs-4 text-primary d-sm-none collapsed bg-white rounded-circle ms-2 shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="position: fixed;z-index: 1090!important; margin-top: 18px;">
+  </button>-->
+  
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar-->
+    <div class=" bg-white" id="sidebar-wrapper">
+      <nav class=" d-none d-lg-flex flex-column flex-shrink-0 p-3 bg-white  shadow-sm fw-bold vh-100 position-fixed border-end" aria-expanded="false" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" style="max-width: 280px;">
+        <a class="navbar-brand d-none d-sm-block " href="{% url 'user:index_auth'%}"  ><img src="{% static 'images/logo.svg' %}" style="width: 9.5rem;" alt=""> </a>
+          <hr>
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item  mb-2">
+              <a href="#" class="nav-link active" aria-current="page">
+                <i class="bi bi-person-circle me-2" width="16" height="16"><use xlink:href="#home"></use></i>
+                Dashboard
+              </a>
+            </li>
+            <li class=" mb-2">
+              <a href="#" class="nav-link link-dark">
+                <i class="bi bi-calendar-check me-2" width="16" height="16"><use xlink:href="#appointments"></use></i>
+                Appointments
+              </a>
+            </li >
+            <li class=" mb-2">
+              <a href="#" class="nav-link link-dark">
+                <i class="bi bi-receipt-cutoff me-2" width="16" height="16"><use xlink:href="#prescriptions"></use></i>
+                Prescriptions
+              </a>
+            </li>
+            <li class=" mb-2">
+              <a href="#" class="nav-link link-dark d-flex align-items-center">
+                <svg width="22" height="22" class="me-2 my-auto" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" >
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M19.7725 8.30157L21.2628 7.4536L22.2435 9.15216C23.5684 8.71843 25.0646 9.25298 25.7921 10.504L30.3148 18.2808C31.1477 19.7131 30.6576 21.5421 29.2202 22.366L28.3717 22.8524L29.0488 24.161L26.3749 25.5233L25.7658 24.346L25.0986 24.7284C23.6611 25.5523 21.8206 25.0592 20.9877 23.6269L18.0659 18.6028C15.503 20.0769 13.7356 21.7229 12.7876 23.6052C11.9897 25.1894 11.7274 27.0311 12.1688 29.2423C13.6009 28.4506 15.2478 28 17 28C20.2697 28 23.1729 29.5692 24.9975 31.9957L37.0836 25.1846L38.0764 26.9208L26.0342 33.707C26.6534 35.0078 27 36.4634 27 38C27 38.6849 26.9311 39.3538 26.8 40H40C40.5523 40 41 40.4477 41 41C41 41.5523 40.5523 42 40 42H7.83209C7.2969 40.7751 7 39.4222 7 38C7 35.0046 8.31701 32.3168 10.4036 30.484C9.64219 27.5566 9.85852 24.9748 11.0013 22.7056C12.1866 20.3521 14.3072 18.4589 17.0605 16.8739L16.465 15.85C15.825 14.7496 15.9661 13.4149 16.7178 12.4819L15.6565 10.6436L17.1648 9.78542L15.9236 7.55799L18.5536 6.11401L19.7725 8.30157ZM28.5796 19.2754L24.0569 11.4985C23.7793 11.0211 23.1658 10.8567 22.6866 11.1314L18.5651 13.4938C18.0859 13.7684 17.9226 14.3781 18.2002 14.8555L22.7229 22.6323C23.0005 23.1098 23.614 23.2742 24.0932 22.9995L28.2147 20.6371C28.6939 20.3625 28.8572 19.7528 28.5796 19.2754ZM24.7485 40C24.9125 39.362 25 38.6922 25 38C25 36.8203 24.7447 35.7003 24.2862 34.6921L19.4822 37.3994L18.4895 35.6632L23.236 32.9883C21.7697 31.1661 19.521 30 17 30C12.5817 30 9 33.5817 9 38C9 38.6922 9.08747 39.362 9.25153 40H24.7485Z" fill="#333333"/>
+                  <use xlink:href="#lab"></use>
+                </svg>                  
+                Laboratory
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-link link-dark d-flex align-items-center">
+                <svg width="22" height="22" class="me-2 my-auto" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="48" height="48" fill="white"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M10 11C9.44772 11 9 11.4477 9 12V39C9 39.5523 9.44772 40 10 40H38C38.5509 40 39 39.5515 39 38.9978V12.0022C39 11.4485 38.5509 11 38 11H35V9H38C39.6583 9 41 10.3467 41 12.0022V38.9978C41 40.6533 39.6583 42 38 42H10C8.34315 42 7 40.6569 7 39V12C7 10.3431 8.34315 9 10 9H15V11H10ZM31 11H19V9H31V11Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M39 20H9V18H39V20Z" fill="#333333"/>
+                  <path d="M15 7C15 6.44772 15.4477 6 16 6C16.5523 6 17 6.44772 17 7V12C17 12.5523 16.5523 13 16 13C15.4477 13 15 12.5523 15 12V7Z" fill="#333333"/>
+                  <path d="M31 7C31 6.44772 31.4477 6 32 6C32.5523 6 33 6.44772 33 7V12C33 12.5523 32.5523 13 32 13C31.4477 13 31 12.5523 31 12V7Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M24 26.8C22.2327 26.8 20.8 28.2327 20.8 30C20.8 31.7673 22.2327 33.2 24 33.2C25.7673 33.2 27.2 31.7673 27.2 30C27.2 28.2327 25.7673 26.8 24 26.8ZM18.8 30C18.8 27.1281 21.1281 24.8 24 24.8C26.8719 24.8 29.2 27.1281 29.2 30C29.2 32.8719 26.8719 35.2 24 35.2C21.1281 35.2 18.8 32.8719 18.8 30Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M22.3 23C22.3 22.4477 22.7477 22 23.3 22H24.7C25.2523 22 25.7 22.4477 25.7 23C25.7 23.5523 25.2523 24 24.7 24H23.3C22.7477 24 22.3 23.5523 22.3 23Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M23 26.5V23.7H25V26.5H23Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M27.4929 23.6929C27.8834 23.3024 28.5166 23.3024 28.9071 23.6929L30.3071 25.0929C30.6976 25.4834 30.6976 26.1166 30.3071 26.5071C29.9166 26.8976 29.2834 26.8976 28.8929 26.5071L27.4929 25.1071C27.1024 24.7166 27.1024 24.0834 27.4929 23.6929Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M26.0929 26.4929L28.1929 24.3929L29.6071 25.8071L27.5071 27.9071L26.0929 26.4929Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M31 28.3C31.5523 28.3 32 28.7477 32 29.3V30.7C32 31.2523 31.5523 31.7 31 31.7C30.4477 31.7 30 31.2523 30 30.7V29.3C30 28.7477 30.4477 28.3 31 28.3Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M27.2 30C27.2 29.4477 27.6477 29 28.2 29H31C31.5523 29 32 29.4477 32 30C32 30.5523 31.5523 31 31 31H28.2C27.6477 31 27.2 30.5523 27.2 30Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M31.0071 33.4929C31.3976 33.8834 31.3976 34.5166 31.0071 34.9071L29.6071 36.3071C29.2166 36.6977 28.5834 36.6977 28.1929 36.3071C27.8024 35.9166 27.8024 35.2834 28.1929 34.8929L29.5929 33.4929C29.9834 33.1024 30.6166 33.1024 31.0071 33.4929Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M28.2071 32.0929L30.3071 34.1929L28.8929 35.6071L26.7929 33.5071L28.2071 32.0929Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M22.3 37C22.3 36.4477 22.7477 36 23.3 36H24.7C25.2523 36 25.7 36.4477 25.7 37C25.7 37.5523 25.2523 38 24.7 38H23.3C22.7477 38 22.3 37.5523 22.3 37Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M24 33.2C24.5523 33.2 25 33.6477 25 34.2V37C25 37.5523 24.5523 38 24 38C23.4477 38 23 37.5523 23 37V34.2C23 33.6477 23.4477 33.2 24 33.2Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M17.6929 33.4929C18.0834 33.1024 18.7166 33.1024 19.1071 33.4929L20.5071 34.8929C20.8976 35.2834 20.8976 35.9166 20.5071 36.3071C20.1166 36.6977 19.4834 36.6977 19.0929 36.3071L17.6929 34.9071C17.3024 34.5166 17.3024 33.8834 17.6929 33.4929Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M21.9071 33.5071L19.8071 35.6071L18.3929 34.1929L20.4929 32.0929L21.9071 33.5071Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M17 28.3C17.5523 28.3 18 28.7477 18 29.3V30.7C18 31.2523 17.5523 31.7 17 31.7C16.4477 31.7 16 31.2523 16 30.7V29.3C16 28.7477 16.4477 28.3 17 28.3Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M16 30C16 29.4477 16.4477 29 17 29H19.8C20.3523 29 20.8 29.4477 20.8 30C20.8 30.5523 20.3523 31 19.8 31H17C16.4477 31 16 30.5523 16 30Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M20.5071 23.6929C20.8976 24.0834 20.8976 24.7166 20.5071 25.1071L19.1071 26.5071C18.7166 26.8976 18.0834 26.8976 17.6929 26.5071C17.3024 26.1166 17.3024 25.4834 17.6929 25.0929L19.0929 23.6929C19.4834 23.3024 20.1166 23.3024 20.5071 23.6929Z" fill="#333333"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M20.4929 27.9071L18.3929 25.8071L19.8071 24.3929L21.9071 26.4929L20.4929 27.9071Z" fill="#333333"/>
+                  <use xlink:href="#covid"></use>  
+                </svg>
+                  COVID-19
+              </a>
+            </li>
+          </ul>
+          
+            <hr>
+            <div class="dropdown">
+              <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="{% static 'images/profile-image.png' %}" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>{{ user.username }}</strong>    <!--Displayed User name must be changed according to the registered account user name-->
+              </a>
+              <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" >
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{%url 'user:logout'%}">Logout</a></li>
+              </ul>
+            
+          </div>
+      </nav>
+    
+      <nav class="d-lg-none d-flex flex-column flex-shrink-0 bg-white position-fixed h-100 border-end shadow-sm" id="minnav" style="max-width: 4.5rem;">
+        <a href="/" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+          <a class="navbar-brand d-lg-none ps-2" href="#"><img src="{% static 'images/icon.svg'%}" alt="" style="width: 3rem;"></a>
+        </a>
+        <hr>
+        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+          <li class="nav-item mb-2">
+            <a href="#" class="nav-link active py-3 border-bottom" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+              <i class="bi bi-person-circle" width="10" height="10" role="img" aria-label="Home"><use xlink:href="#home"></use></i>
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
+              <i class="bi bi-calendar-check" width="16" height="16"><use xlink:href="#appointments"></use></i>            
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Orders">
+              <i class="bi bi-receipt-cutoff" width="16" height="16"><use xlink:href="#prescriptions"></use></i>
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Products">
+              <svg width="22" height="22" class=" my-auto" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" >
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M19.7725 8.30157L21.2628 7.4536L22.2435 9.15216C23.5684 8.71843 25.0646 9.25298 25.7921 10.504L30.3148 18.2808C31.1477 19.7131 30.6576 21.5421 29.2202 22.366L28.3717 22.8524L29.0488 24.161L26.3749 25.5233L25.7658 24.346L25.0986 24.7284C23.6611 25.5523 21.8206 25.0592 20.9877 23.6269L18.0659 18.6028C15.503 20.0769 13.7356 21.7229 12.7876 23.6052C11.9897 25.1894 11.7274 27.0311 12.1688 29.2423C13.6009 28.4506 15.2478 28 17 28C20.2697 28 23.1729 29.5692 24.9975 31.9957L37.0836 25.1846L38.0764 26.9208L26.0342 33.707C26.6534 35.0078 27 36.4634 27 38C27 38.6849 26.9311 39.3538 26.8 40H40C40.5523 40 41 40.4477 41 41C41 41.5523 40.5523 42 40 42H7.83209C7.2969 40.7751 7 39.4222 7 38C7 35.0046 8.31701 32.3168 10.4036 30.484C9.64219 27.5566 9.85852 24.9748 11.0013 22.7056C12.1866 20.3521 14.3072 18.4589 17.0605 16.8739L16.465 15.85C15.825 14.7496 15.9661 13.4149 16.7178 12.4819L15.6565 10.6436L17.1648 9.78542L15.9236 7.55799L18.5536 6.11401L19.7725 8.30157ZM28.5796 19.2754L24.0569 11.4985C23.7793 11.0211 23.1658 10.8567 22.6866 11.1314L18.5651 13.4938C18.0859 13.7684 17.9226 14.3781 18.2002 14.8555L22.7229 22.6323C23.0005 23.1098 23.614 23.2742 24.0932 22.9995L28.2147 20.6371C28.6939 20.3625 28.8572 19.7528 28.5796 19.2754ZM24.7485 40C24.9125 39.362 25 38.6922 25 38C25 36.8203 24.7447 35.7003 24.2862 34.6921L19.4822 37.3994L18.4895 35.6632L23.236 32.9883C21.7697 31.1661 19.521 30 17 30C12.5817 30 9 33.5817 9 38C9 38.6922 9.08747 39.362 9.25153 40H24.7485Z" fill="#333333"/>
+                <use xlink:href="#lab"></use>
+              </svg> 
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Customers">
+              <svg width="22" height="22" class=" my-auto" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="48" height="48" fill="white"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M10 11C9.44772 11 9 11.4477 9 12V39C9 39.5523 9.44772 40 10 40H38C38.5509 40 39 39.5515 39 38.9978V12.0022C39 11.4485 38.5509 11 38 11H35V9H38C39.6583 9 41 10.3467 41 12.0022V38.9978C41 40.6533 39.6583 42 38 42H10C8.34315 42 7 40.6569 7 39V12C7 10.3431 8.34315 9 10 9H15V11H10ZM31 11H19V9H31V11Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M39 20H9V18H39V20Z" fill="#333333"/>
+                <path d="M15 7C15 6.44772 15.4477 6 16 6C16.5523 6 17 6.44772 17 7V12C17 12.5523 16.5523 13 16 13C15.4477 13 15 12.5523 15 12V7Z" fill="#333333"/>
+                <path d="M31 7C31 6.44772 31.4477 6 32 6C32.5523 6 33 6.44772 33 7V12C33 12.5523 32.5523 13 32 13C31.4477 13 31 12.5523 31 12V7Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M24 26.8C22.2327 26.8 20.8 28.2327 20.8 30C20.8 31.7673 22.2327 33.2 24 33.2C25.7673 33.2 27.2 31.7673 27.2 30C27.2 28.2327 25.7673 26.8 24 26.8ZM18.8 30C18.8 27.1281 21.1281 24.8 24 24.8C26.8719 24.8 29.2 27.1281 29.2 30C29.2 32.8719 26.8719 35.2 24 35.2C21.1281 35.2 18.8 32.8719 18.8 30Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M22.3 23C22.3 22.4477 22.7477 22 23.3 22H24.7C25.2523 22 25.7 22.4477 25.7 23C25.7 23.5523 25.2523 24 24.7 24H23.3C22.7477 24 22.3 23.5523 22.3 23Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M23 26.5V23.7H25V26.5H23Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M27.4929 23.6929C27.8834 23.3024 28.5166 23.3024 28.9071 23.6929L30.3071 25.0929C30.6976 25.4834 30.6976 26.1166 30.3071 26.5071C29.9166 26.8976 29.2834 26.8976 28.8929 26.5071L27.4929 25.1071C27.1024 24.7166 27.1024 24.0834 27.4929 23.6929Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M26.0929 26.4929L28.1929 24.3929L29.6071 25.8071L27.5071 27.9071L26.0929 26.4929Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M31 28.3C31.5523 28.3 32 28.7477 32 29.3V30.7C32 31.2523 31.5523 31.7 31 31.7C30.4477 31.7 30 31.2523 30 30.7V29.3C30 28.7477 30.4477 28.3 31 28.3Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M27.2 30C27.2 29.4477 27.6477 29 28.2 29H31C31.5523 29 32 29.4477 32 30C32 30.5523 31.5523 31 31 31H28.2C27.6477 31 27.2 30.5523 27.2 30Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M31.0071 33.4929C31.3976 33.8834 31.3976 34.5166 31.0071 34.9071L29.6071 36.3071C29.2166 36.6977 28.5834 36.6977 28.1929 36.3071C27.8024 35.9166 27.8024 35.2834 28.1929 34.8929L29.5929 33.4929C29.9834 33.1024 30.6166 33.1024 31.0071 33.4929Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M28.2071 32.0929L30.3071 34.1929L28.8929 35.6071L26.7929 33.5071L28.2071 32.0929Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M22.3 37C22.3 36.4477 22.7477 36 23.3 36H24.7C25.2523 36 25.7 36.4477 25.7 37C25.7 37.5523 25.2523 38 24.7 38H23.3C22.7477 38 22.3 37.5523 22.3 37Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M24 33.2C24.5523 33.2 25 33.6477 25 34.2V37C25 37.5523 24.5523 38 24 38C23.4477 38 23 37.5523 23 37V34.2C23 33.6477 23.4477 33.2 24 33.2Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M17.6929 33.4929C18.0834 33.1024 18.7166 33.1024 19.1071 33.4929L20.5071 34.8929C20.8976 35.2834 20.8976 35.9166 20.5071 36.3071C20.1166 36.6977 19.4834 36.6977 19.0929 36.3071L17.6929 34.9071C17.3024 34.5166 17.3024 33.8834 17.6929 33.4929Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M21.9071 33.5071L19.8071 35.6071L18.3929 34.1929L20.4929 32.0929L21.9071 33.5071Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M17 28.3C17.5523 28.3 18 28.7477 18 29.3V30.7C18 31.2523 17.5523 31.7 17 31.7C16.4477 31.7 16 31.2523 16 30.7V29.3C16 28.7477 16.4477 28.3 17 28.3Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M16 30C16 29.4477 16.4477 29 17 29H19.8C20.3523 29 20.8 29.4477 20.8 30C20.8 30.5523 20.3523 31 19.8 31H17C16.4477 31 16 30.5523 16 30Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M20.5071 23.6929C20.8976 24.0834 20.8976 24.7166 20.5071 25.1071L19.1071 26.5071C18.7166 26.8976 18.0834 26.8976 17.6929 26.5071C17.3024 26.1166 17.3024 25.4834 17.6929 25.0929L19.0929 23.6929C19.4834 23.3024 20.1166 23.3024 20.5071 23.6929Z" fill="#333333"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M20.4929 27.9071L18.3929 25.8071L19.8071 24.3929L21.9071 26.4929L20.4929 27.9071Z" fill="#333333"/>
+                <use xlink:href="#covid"></use>  
+              </svg>            
+            </a>
+          </li>
+        </ul>
+        <div class="dropdown border-top">
+          <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{% static 'images/profile-image.png' %}" alt="mdo" width="24" height="24" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="container-fluid" id="content">
+      <div class="row  me-4">
+        <div class="col-12 me-auto mt-3">
+          <div class="container bg-primary p-4 shadow-sm m-3 border   d-flex align-items-center" style="border-radius: 25px; min-width: fit-content;">
+            <h2 class="display-5 fw-bold text-white" >Hello, {{ user.username }}!</h2>  <!--Displayed User name must be changed according to the registered account user name-->
+            <img src="{% static 'images/profile-image.png' %}" alt="" width="55" height="55" class="rounded-circle border border-white border-2 ms-auto d-none d-sm-block ">
+          </div>
+        </div>
+        <div class="col-12 col-xl-7 me-auto" >
+          <div class="container bg-white p-4 shadow-sm m-3 border" style="border-radius: 25px; min-width: fit-content;">
+            <h5 class="fw-bold">Personal information</h5>
+            <hr>
+            <div class="row">
+              <div class="col-12 col-md-4 col-sm-6 mb-3 d-flex align-items-start">
+                
+                    <svg class="flex-shrink-0 " width="3.5rem" height="3.5rem" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M35.8513 16.2506C36.5933 17.0688 36.3659 18.3263 35.4616 18.9606L30.5893 22.3781C29.685 23.0124 28.4495 22.7564 27.556 22.1071C27.3273 21.9408 27.0865 21.7904 26.8353 21.6571C25.9922 21.2096 25.0551 20.9681 24.1007 20.9522C23.1463 20.9363 22.2016 21.1466 21.3441 21.5657C21.0885 21.6906 20.8429 21.8329 20.6088 21.9915C19.6942 22.6108 18.4509 22.8255 17.5682 22.1615L12.8123 18.5837C11.9296 17.9197 11.7441 16.6553 12.513 15.8623C13.7981 14.5369 15.3066 13.4401 16.9744 12.625C19.2429 11.5163 21.7416 10.9602 24.2662 11.0022C26.7908 11.0442 29.2697 11.6831 31.5 12.8667C33.1397 13.7368 34.6109 14.8832 35.8513 16.2506ZM34.1956 17.4057C33.1476 16.2921 31.9212 15.3544 30.5625 14.6334C28.611 13.5977 26.442 13.0387 24.2329 13.0019C22.0239 12.9652 19.8375 13.4518 17.8526 14.4219C16.4707 15.0973 15.2137 15.9937 14.1293 17.0718L18.7666 20.5603C18.7816 20.5652 18.8205 20.5727 18.8976 20.5657C19.0544 20.5516 19.2744 20.4796 19.4875 20.3354C19.799 20.1244 20.1259 19.935 20.4658 19.7688C21.607 19.2111 22.864 18.9314 24.1339 18.9525C24.185 18.9533 24.236 18.9547 24.2869 18.9565C24.3251 18.8764 24.3746 18.8 24.4357 18.7298L27.1821 15.5719C27.5446 15.1552 28.1762 15.1112 28.5929 15.4736C29.0097 15.8361 29.0537 16.4677 28.6912 16.8844L26.5368 19.3616C26.9615 19.5026 27.375 19.6793 27.7728 19.8904C28.1071 20.0678 28.4275 20.268 28.7318 20.4892C28.9399 20.6405 29.1575 20.7198 29.3137 20.739C29.3905 20.7485 29.4297 20.7423 29.4448 20.7379L34.1956 17.4057ZM29.4525 20.7347C29.4528 20.7349 29.45 20.7364 29.4448 20.7379C29.4492 20.7354 29.4523 20.7344 29.4525 20.7347ZM18.759 20.5567C18.7592 20.5565 18.7623 20.5576 18.7666 20.5603C18.7615 20.5585 18.7587 20.557 18.759 20.5567Z" fill="#0d6efd"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M36.2161 42C38.339 42 40.0921 40.3416 40.2099 38.2219L41.7655 10.2219C41.8928 7.92908 40.068 6 37.7716 6L10.2284 6C7.93206 6 6.10718 7.92907 6.23456 10.2219L7.79011 38.2219C7.90787 40.3415 9.66102 42 11.7839 42L36.2161 42ZM11.7839 40L36.2161 40C37.2775 40 38.1541 39.1708 38.213 38.1109L39.7685 10.1109C39.8322 8.96454 38.9198 8 37.7716 8L10.2284 8C9.08023 8 8.16779 8.96454 8.23148 10.1109L9.78703 38.1109C9.84591 39.1708 10.7225 40 11.7839 40Z" fill="#0d6efd"/>
+                    </svg>    
+                    
+                  <div >
+                    <small class="text-muted">Weight</small>
+                    <p class="fw-bold">65 kg</p>
+                  </div>
+                
+              </div>
+              
+              <div class="col-12 col-md-4 col-sm-6 mb-3 d-flex align-items-start">
+                <svg class="flex-shrink-0" width="3.5rem" height="3.5rem" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M24 13C26.4853 13 28.5 10.9853 28.5 8.5C28.5 6.01472 26.4853 4 24 4C21.5147 4 19.5 6.01472 19.5 8.5C19.5 10.9853 21.5147 13 24 13ZM37.9201 15.4404C38.2292 16.5008 37.6201 17.6111 36.5596 17.9201C34.1842 18.6124 32.0379 19.1337 30 19.4812V30.9944L30 31V42C30 43.0693 29.1589 43.9495 28.0906 43.998C27.0224 44.0464 26.105 43.246 26.0082 42.1811L25.0082 31.1811C25.0027 31.1206 25 31.0602 25 31H23C23 31.0602 22.9973 31.1206 22.9918 31.1811L21.9918 42.1811C21.895 43.246 20.9776 44.0464 19.9094 43.998C18.8412 43.9495 18 43.0693 18 42L18 19.4443C15.9674 19.0938 13.8288 18.583 11.4653 17.9272C10.4009 17.6319 9.7775 16.5296 10.0728 15.4653C10.3682 14.4009 11.4704 13.7775 12.5348 14.0728C17.1431 15.3515 20.6058 15.9845 24.0087 15.9997C27.4047 16.0149 30.8587 15.4152 35.4404 14.0799C36.5009 13.7708 37.6111 14.3799 37.9201 15.4404Z" fill="#0d6efd"/>
+                </svg>   
+                <div>           
+                  <small class="text-muted">Height</small>
+                  <p class="fw-bold">171 cm</p>
+                </div>    
+              </div>
+
+              <div class="col-12 col-md-4 col-sm-6 mb-3 d-flex align-items-start">
+                <svg class="flex-shrink-0 me-2" width="3.5rem" height="3.5rem" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M39 8H9C8.44771 8 8 8.44772 8 9V39C8 39.5523 8.44772 40 9 40H39C39.5523 40 40 39.5523 40 39V9C40 8.44771 39.5523 8 39 8ZM9 6C7.34315 6 6 7.34315 6 9V39C6 40.6569 7.34315 42 9 42H39C40.6569 42 42 40.6569 42 39V9C42 7.34315 40.6569 6 39 6H9Z" fill="#0d6efd"/>
+                  <path d="M33.9899 34.6349C33.5741 35.0562 33.1615 35.4743 32.7735 36.0068V37H27V36.0068C27.0978 35.2339 27.597 33.8414 27.612 33.4543C27.6329 32.9098 28.3979 31.9175 28.3979 31.9175L30.7456 29.0888C30.7456 29.0888 31.4102 28.4184 31.7905 27.6748C32.1708 26.9312 32.9801 27.8675 33.0877 28.5365C33.1952 29.2056 32.9906 29.5582 32.9906 29.5582L31.6491 32.1046C31.6491 32.1046 33.2044 30.0703 33.6872 29.2521C33.9317 28.8377 34.0002 27.9602 34.0766 26.9795C34.1511 26.0243 34.2332 24.971 34.4932 24.152C35.0202 22.4924 36.5455 22.9079 36.8099 23.6494C37.0744 24.3909 37.0145 29.2905 36.9185 30.1074C36.8434 30.7471 36.4398 31.3727 35.9845 32.0784C35.8584 32.2739 35.7283 32.4755 35.6002 32.6853C35.0903 33.5198 34.5373 34.0802 33.9899 34.6349Z" fill="#0d6efd"/>
+                  <path d="M28 42C27.4477 42 27 41.5523 27 41V39C27 38.4477 27.4477 38 28 38H32C32.5523 38 33 38.4477 33 39V41C33 41.5523 32.5523 42 32 42H28Z" fill="#0d6efd"/>
+                  <path d="M12.9569 34.6349C13.3741 35.0562 13.788 35.4743 14.1773 36.0068V37H20V36.0068C19.9019 35.2339 19.7299 33.8414 19.715 33.4543C19.6939 32.9098 18.9264 31.9175 18.9264 31.9175L16.5708 29.0888C16.5708 29.0888 15.904 28.4184 15.5224 27.6748C15.1409 26.9312 14.3289 27.8675 14.2209 28.5365C14.113 29.2056 14.3183 29.5582 14.3183 29.5582L15.6643 32.1046C15.6643 32.1046 14.1039 30.0703 13.6194 29.2521C13.3741 28.8377 13.3054 27.9602 13.2287 26.9795C13.154 26.0243 13.0716 24.971 12.8107 24.152C12.282 22.4924 10.7516 22.9079 10.4863 23.6494C10.2209 24.3909 9.92219 29.2905 10.0185 30.1074C10.0938 30.7471 10.4988 31.3727 10.9556 32.0784C11.0821 32.2739 11.2126 32.4755 11.3412 32.6853C11.8528 33.5198 12.4076 34.0802 12.9569 34.6349Z" fill="#0d6efd"/>
+                  <path d="M19 42C19.5523 42 20 41.5523 20 41V39C20 38.4477 19.5523 38 19 38H15C14.4477 38 14 38.4477 14 39V41C14 41.5523 14.4477 42 15 42H19Z" fill="#0d6efd"/>
+                  <path d="M15 17.2069C15 13.9864 17.018 11 19.7812 11C21.6988 11 23.1217 12.3399 24 14.2406C24.8782 12.34 26.3011 11 28.2188 11C30.9823 11 33 13.9869 33 17.2069C33 24.1 24 29 24 29C24 29 15 24.3965 15 17.2069Z" fill="#0d6efd"/>
+                </svg>
+                <div>
+                  <small class="text-muted">Marital status</small>
+                  <p class="fw-bold">Single</p>
+                </div>
+              </div>
+              
+              <div class="col-12 col-md-4 col-sm-6 mb-3 d-flex align-items-start">
+                <svg class="flex-shrink-0 me-2" width="3.4rem" height="3.4rem" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M17 25H15V27H17V25ZM15 23C13.8954 23 13 23.8954 13 25V27C13 28.1046 13.8954 29 15 29H17C18.1046 29 19 28.1046 19 27V25C19 23.8954 18.1046 23 17 23H15Z" fill="#0d6efd"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M25 25H23V27H25V25ZM23 23C21.8954 23 21 23.8954 21 25V27C21 28.1046 21.8954 29 23 29H25C26.1046 29 27 28.1046 27 27V25C27 23.8954 26.1046 23 25 23H23Z" fill="#0d6efd"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M33 25H31V27H33V25ZM31 23C29.8954 23 29 23.8954 29 25V27C29 28.1046 29.8954 29 31 29H33C34.1046 29 35 28.1046 35 27V25C35 23.8954 34.1046 23 33 23H31Z" fill="#0d6efd"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M17 33H15V35H17V33ZM15 31C13.8954 31 13 31.8954 13 33V35C13 36.1046 13.8954 37 15 37H17C18.1046 37 19 36.1046 19 35V33C19 31.8954 18.1046 31 17 31H15Z" fill="#0d6efd"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M25 33H23V35H25V33ZM23 31C21.8954 31 21 31.8954 21 33V35C21 36.1046 21.8954 37 23 37H25C26.1046 37 27 36.1046 27 35V33C27 31.8954 26.1046 31 25 31H23Z" fill="#0d6efd"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M33 33H31V35H33V33ZM31 31C29.8954 31 29 31.8954 29 33V35C29 36.1046 29.8954 37 31 37H33C34.1046 37 35 36.1046 35 35V33C35 31.8954 34.1046 31 33 31H31Z" fill="#0d6efd"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M10 11C9.44772 11 9 11.4477 9 12V39C9 39.5523 9.44772 40 10 40H38C38.5509 40 39 39.5515 39 38.9978V12.0022C39 11.4485 38.5509 11 38 11H35V9H38C39.6583 9 41 10.3467 41 12.0022V38.9978C41 40.6533 39.6583 42 38 42H10C8.34315 42 7 40.6569 7 39V12C7 10.3431 8.34315 9 10 9H15V11H10ZM31 11H19V9H31V11Z" fill="#0d6efd"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M39 20H9V18H39V20Z" fill="#0d6efd"/>
+                  <path d="M15 7C15 6.44772 15.4477 6 16 6C16.5523 6 17 6.44772 17 7V14C17 14.5523 16.5523 15 16 15C15.4477 15 15 14.5523 15 14V7Z" fill="#0d6efd"/>
+                  <path d="M31 7C31 6.44772 31.4477 6 32 6C32.5523 6 33 6.44772 33 7V14C33 14.5523 32.5523 15 32 15C31.4477 15 31 14.5523 31 14V7Z" fill="#0d6efd"/>
+                </svg>
+                <div>
+                  <small class="text-muted">Age</small>
+                  <p class="fw-bold">22 years</p>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4 col-sm-6 mb-3 d-flex align-items-start">
+                <svg class="flex-shrink-0 "  width="3.4rem" height="3.4rem" viewBox="0 0 48 48" fill="currentcolor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M24 12C25.1046 12 26 11.1046 26 10C26 8.89543 25.1046 8 24 8C22.8954 8 22 8.89543 22 10C22 11.1046 22.8954 12 24 12Z" fill="#0d6efd"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M33.9824 38.0479L32.9912 38.0479V40.0479H28.9824V44.0479H26.9824V40.0479H22.9907C22.9652 41.1304 22.0798 42 20.9912 42H18.9912C17.9026 42 17.0172 41.1304 16.9918 40.0479H14.9912V38.0479L13.9824 38.0479C11.7733 38.0479 9.98242 36.257 9.98242 34.0479V10.1622C9.98242 7.95304 11.7733 6.16218 13.9824 6.16218H19.9824L21.1144 4.99782C22.6851 3.38224 25.2797 3.38224 26.8504 4.99782L27.9824 6.16218H33.9824C36.1916 6.16218 37.9824 7.95304 37.9824 10.1622V34.0479C37.9824 36.257 36.1916 38.0479 33.9824 38.0479ZM26.5484 7.55634C26.925 7.94366 27.4422 8.16218 27.9824 8.16218H33.9824C35.087 8.16218 35.9824 9.05761 35.9824 10.1622V11.5H31.9912V13.5H35.9824V16.5H31.9912V18.5H35.9824V21.5H31.9912V23.5H35.9824V28.1001C34.5733 26.6386 31.7589 24.7291 27.9912 27.17C24.0137 29.7468 20.373 29.5953 16.1832 29.4208C14.8483 29.3652 13.4575 29.3073 11.9824 29.3346V10.1622C11.9824 9.05761 12.8779 8.16218 13.9824 8.16218H19.9824C20.5226 8.16218 21.0399 7.94366 21.4164 7.55634L22.5484 6.39198C23.3338 5.58418 24.6311 5.58419 25.4164 6.39198L26.5484 7.55634Z" fill="#0d6efd"/>
+                  </svg>      
+                <div>
+                  <small class="text-muted">Blood group</small>
+                  <p class="fw-bold">A+</p>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4 col-sm-6 mb-3 d-flex align-items-start">
+                <svg class="flex-shrink-0 me-2" width="3.4rem" height="3.4rem" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5459 15.4793C16.1101 14.9187 14.5294 14.8477 13.0491 15.2773C11.5688 15.7068 10.2716 16.613 9.35899 17.8551C8.44632 19.0973 7.96916 20.6059 8.00155 22.147C8.03393 23.688 8.57405 25.1753 9.53809 26.378C10.5021 27.5807 11.8362 28.4315 13.3332 28.7986C14.8303 29.1656 16.4066 29.0282 17.8176 28.4078C19.2286 27.7874 20.3954 26.7185 21.1369 25.3672C21.8783 24.0159 22.1531 22.4576 21.9184 20.9342C21.8343 20.3884 22.2087 19.8777 22.7545 19.7936C23.3004 19.7096 23.811 20.0839 23.8951 20.6297C24.1968 22.5884 23.8436 24.5919 22.8903 26.3293C21.9369 28.0667 20.4368 29.4409 18.6227 30.2386C16.8085 31.0363 14.7818 31.2129 12.857 30.741C10.9322 30.2692 9.21703 29.1752 7.97755 27.6289C6.73807 26.0825 6.04363 24.1703 6.00199 22.189C5.96035 20.2077 6.57384 18.268 7.74727 16.6709C8.92069 15.0739 10.5884 13.9088 12.4917 13.3565C14.3949 12.8042 16.4273 12.8955 18.2733 13.6163C18.7878 13.8171 19.042 14.397 18.8411 14.9115C18.6403 15.4259 18.0604 15.6802 17.5459 15.4793Z" fill="#0d6efd"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M14 38.9999L14 30.9999C14 30.4476 14.4477 29.9999 15 29.9999C15.5523 29.9999 16 30.4476 16 30.9999L16 38.9999C16 39.5522 15.5523 39.9999 15 39.9999C14.4477 39.9999 14 39.5522 14 38.9999Z" fill="#0d6efd"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M11 33.9999C11 33.4476 11.4477 32.9999 12 32.9999H18C18.5523 32.9999 19 33.4476 19 33.9999C19 34.5522 18.5523 34.9999 18 34.9999H12C11.4477 34.9999 11 34.5522 11 33.9999Z" fill="#0d6efd"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M28.9016 15.2631C27.4182 14.8444 25.838 14.927 24.4064 15.4981C22.9747 16.0692 21.7716 17.0969 20.9836 18.4217C20.1957 19.7465 19.8671 21.2943 20.0488 22.8249C20.1139 23.3734 19.7221 23.8707 19.1736 23.9358C18.6252 24.0009 18.1278 23.6091 18.0627 23.0607C17.8292 21.0927 18.2517 19.1027 19.2647 17.3994C20.2777 15.6961 21.8246 14.3748 23.6653 13.6405C25.5061 12.9062 27.5377 12.8 29.4449 13.3384C31.3522 13.8767 33.0284 15.0295 34.2135 16.6179C35.3986 18.2063 36.0263 20.1415 35.9992 22.1231C35.972 24.1046 35.2916 26.0219 34.0635 27.5772C32.8354 29.1326 31.1282 30.2391 29.207 30.7251C27.2857 31.2111 25.2578 31.0493 23.4378 30.2649C22.9306 30.0463 22.6967 29.458 22.9153 28.9508C23.1339 28.4436 23.7222 28.2097 24.2294 28.4283C25.6449 29.0383 27.2222 29.1641 28.7165 28.7862C30.2109 28.4082 31.5386 27.5476 32.4938 26.3378C33.449 25.1281 33.9783 23.6369 33.9993 22.0957C34.0204 20.5545 33.5322 19.0493 32.6105 17.8139C31.6888 16.5785 30.385 15.6819 28.9016 15.2631Z" fill="#0d6efd"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M32.7929 17.207C32.4024 16.8165 32.4024 16.1833 32.7929 15.7928L40.2929 8.29279C40.6834 7.90227 41.3166 7.90227 41.7071 8.29279C42.0976 8.68331 42.0976 9.31648 41.7071 9.707L34.2071 17.207C33.8166 17.5975 33.1834 17.5975 32.7929 17.207Z" fill="#0d6efd"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M40.9244 14.9998C40.3721 14.9929 39.9301 14.5395 39.9371 13.9873L39.9872 10.0127L36.0126 10.0628C35.4604 10.0697 35.007 9.62771 35.0001 9.07547C34.9931 8.52323 35.4352 8.06991 35.9874 8.06295L42.0128 7.98706L41.9369 14.0125C41.9299 14.5647 41.4766 15.0068 40.9244 14.9998Z" fill="#0d6efd"/>
+                </svg>
+                <div>
+                  <small class="text-muted">Gender</small>
+                  <p class="fw-bold">Male</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+
+        <div class="col-12 col-xl-5 ">
+          <div class="container bg-white p-4 shadow-sm m-3 border" style="border-radius: 25px; min-width: fit-content;">
+          <h5 class="fw-bold">Vital signs</h5>
+            <hr>
+            <div class="row">
+              <div class="col-12 col-sm-6  mb-3 d-flex align-items-start">
+                <svg class="flex-shrink-0 me-2" width="3.4rem" height="3.4rem" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3446 11.9881C8.88462 13.846 8 16.3844 8 19.0345C8 20.5722 8.26446 22.0435 8.73002 23.4444H17.4152L20.8032 17.4212L22.9203 24.8308L25.5109 21.5H32V23.5H26.4891L22.0797 29.1692L20.1968 22.5788L18.5848 25.4444H4V23.4444H6.63587C6.23033 22.0457 6 20.5732 6 19.0345C6 15.9592 7.02123 12.9804 8.77202 10.7524C10.5276 8.51823 13.0561 7 16.0312 7C19.5348 7 22.1991 8.96337 24 11.7338C25.8008 8.9635 28.4651 7 31.9688 7C34.9442 7 37.4727 8.5185 39.2282 10.7527C40.9789 12.9809 42 15.9597 42 19.0345C42 25.617 37.4563 31.1139 33.1576 34.866C30.9836 36.7635 28.8144 38.2655 27.1908 39.2925C26.378 39.8067 25.6993 40.2035 25.2217 40.4728C24.9828 40.6075 24.794 40.7105 24.6636 40.7804C24.5985 40.8154 24.5479 40.8421 24.5129 40.8604L24.4724 40.8815L24.4611 40.8873L24.4578 40.8891L24.4567 40.8896C24.4567 40.8896 24.456 40.89 24 40C23.5662 40.901 23.5659 40.9009 23.5659 40.9009L23.5599 40.898L23.546 40.8912L23.4955 40.8664C23.4521 40.8449 23.3892 40.8134 23.3084 40.7723C23.1468 40.6899 22.9133 40.5684 22.6196 40.4091C22.0324 40.0905 21.2032 39.6199 20.2258 39.0068C18.2746 37.7828 15.7151 35.9803 13.3082 33.6741C12.0243 32.444 10.7773 31.0644 9.68759 29.5461C9.36556 29.0974 9.46824 28.4726 9.91692 28.1506C10.3656 27.8286 10.9904 27.9313 11.3124 28.38C12.3169 29.7795 13.4782 31.0672 14.6918 32.23C16.9708 34.4135 19.4113 36.1349 21.2886 37.3125C22.2255 37.9002 23.0177 38.3497 23.5733 38.6511C23.731 38.7367 23.8696 38.8103 23.9868 38.8716C24.0623 38.83 24.1466 38.783 24.2393 38.7307C24.6913 38.4758 25.3407 38.0963 26.1217 37.6023C27.6856 36.613 29.7664 35.1713 31.8424 33.3592C36.0437 29.6922 40 24.7063 40 19.0345C40 16.3848 39.1155 13.8464 37.6556 11.9884C36.2005 10.1365 34.2134 9 31.9688 9C28.866 9 26.4594 11.0208 24.8976 14.2018L24 16.0301L23.1024 14.2018C21.5405 11.0206 19.1339 9 16.0312 9C13.7868 9 11.7997 10.1363 10.3446 11.9881ZM24 40L23.5659 40.9009L24.0139 41.1165L24.4567 40.8896L24 40Z" fill="#0d6efd"/>
+                </svg>
+                  
+                <div>
+                  <small class="text-muted">Heart rate</small>
+                  <p class="fw-bold">75 bpm</p>
+                </div>
+              </div>
+              
+              <div class="col-12 col-sm-6  mb-3 d-flex align-items-start">
+                <svg class="flex-shrink-0 me-2" width="3.4rem" height="3.4rem" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M23.5 26.5L25 21.5L26.5 26.5L25 28.5L23.5 26.5Z" fill="#0d6efd"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M39.5076 18.8528C40.9495 18.4201 42 17.0827 42 15.5V9.5C42 7.567 40.433 6 38.5 6C36.567 6 35 7.567 35 9.5V15.5C35 17.0882 36.0578 18.4293 37.5073 18.8572C37.5156 19.982 37.53 21.0565 37.5437 22.0829L37.5437 22.084C37.5925 25.735 37.6332 28.7779 37.367 31.3076C36.9902 34.8886 36.027 37.0735 33.8843 38.3364C31.0049 40.0334 26.6466 40.621 22.9785 40.1592C21.1519 39.9292 19.5904 39.4496 18.5169 38.7934C18.0832 38.5283 17.752 38.2509 17.5114 37.9649C19.3353 37.8622 21.1162 37.5323 22.5645 36.9429C24.3416 36.2197 25.9525 34.9442 25.999 32.9293C29.3918 32.4445 32 29.5268 32 26C32 22.4735 29.3923 19.5561 26 19.0709V13.1221H25.9971C25.999 13.0815 26 13.0408 26 13C26 10.2386 21.5228 8 16 8C10.4772 8 6 10.2386 6 13C6 13.0408 6.00098 13.0815 6.00292 13.1221H6V32.8396C6 34.8246 7.66523 36.0935 9.42952 36.8249C11.0703 37.5052 13.1448 37.8844 15.2301 37.9774C15.6179 39.0406 16.4595 39.8798 17.4738 40.4998C18.8728 41.3549 20.7381 41.8929 22.7287 42.1435C26.6951 42.6429 31.5327 42.0438 34.8998 40.0594C37.865 38.3118 38.9558 35.3206 39.356 31.5168C39.6352 28.8635 39.5922 25.6347 39.5426 21.9138C39.5294 20.9275 39.5158 19.9067 39.5076 18.8528ZM38.5 8C39.3284 8 40 8.67157 40 9.5V15.5C40 16.3284 39.3284 17 38.5 17C37.6716 17 37 16.3284 37 15.5V9.5C37 8.67157 37.6716 8 38.5 8ZM24 13C24 13.2151 23.7737 13.9482 22.1766 14.7467C20.6992 15.4854 18.5183 16 16 16C13.4817 16 11.3008 15.4854 9.82336 14.7467C8.22632 13.9482 8 13.2151 8 13C8 12.7849 8.22632 12.0518 9.82336 11.2533C11.3008 10.5146 13.4817 10 16 10C18.5183 10 20.6992 10.5146 22.1766 11.2533C23.7737 12.0518 24 12.7849 24 13ZM24 16.0005C22.1755 17.2147 19.2712 18 16 18C15.6936 18 15.3903 17.9931 15.0909 17.9796V35.968C15.3957 35.9849 15.703 35.9953 16.0114 35.9988C18.179 36.0235 20.2859 35.711 21.8105 35.0905C23.3243 34.4744 23.9533 33.707 23.9975 32.9287C20.6064 32.4424 18 29.5256 18 26C18 22.4735 20.6077 19.5561 24 19.0709V16.0005ZM30 26C30 28.7614 27.7614 31 25 31C22.2386 31 20 28.7614 20 26C20 23.2386 22.2386 21 25 21C27.7614 21 30 23.2386 30 26Z" fill="#0d6efd"/>
+                </svg>
+                <div>
+                  <small class="text-muted">Blood pressure</small>
+                  <p class="fw-bold">120/80</p>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6  mb-3 d-flex align-items-start">
+                <svg class="flex-shrink-0 me-2" width="3.4rem" height="3.4rem" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M39 8.00007L9 8.00007C8.44771 8.00007 8 8.44779 8 9.00007L8 39.0001C8 39.5524 8.44772 40.0001 9 40.0001L39 40.0001C39.5523 40.0001 40 39.5524 40 39.0001L40 9.00007C40 8.44779 39.5523 8.00007 39 8.00007ZM9 6.00007C7.34315 6.00007 6 7.34322 6 9.00007L6 39.0001C6 40.6569 7.34315 42.0001 9 42.0001L39 42.0001C40.6569 42.0001 42 40.6569 42 39.0001L42 9.00007C42 7.34322 40.6569 6.00007 39 6.00007L9 6.00007Z" fill="#0d6efd"/>
+                  <path d="M17.7057 14.2403C21.8292 14.237 21.4588 19.8448 21.4607 22.0878C21.463 24.9506 22.1755 30.7274 19.9702 32.9303C17.7229 35.1752 13.2256 36.3004 10.9749 34.433C8.72425 32.5657 12.4578 14.2446 17.7057 14.2403Z" fill="#0d6efd"/>
+                  <path d="M30.2364 14.2315C26.1129 14.2349 26.4924 19.8421 26.4943 22.0851C26.4966 24.9479 25.7936 30.7258 28.0025 32.9251C30.2535 35.1663 34.7526 36.2841 37.0002 34.4131C39.2478 32.5421 35.4843 14.2272 30.2364 14.2315Z" fill="#0d6efd"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M22.9677 6.0005C22.9677 6.0005 22.9677 6.00037 23.9677 6.00001C24.9677 5.99965 24.9677 5.99978 24.9677 5.99978L24.9711 11.9341C24.9729 15.0381 24.975 18.4153 24.976 19.509C24.9773 20.9114 24.4047 21.796 23.6857 22.2861C23.353 22.5128 23.0249 22.6306 22.7817 22.6926C22.6588 22.7239 22.5531 22.7421 22.4729 22.7528C22.4326 22.7582 22.3982 22.7617 22.3707 22.764C22.357 22.7652 22.3449 22.7661 22.3346 22.7667L22.3205 22.7675L22.3145 22.7678L22.3104 22.768C22.3104 22.768 22.3091 22.768 22.2672 21.7689C22.2254 20.7698 22.2241 20.7698 22.2241 20.7698L22.2229 20.7699L22.2206 20.77L22.2165 20.7702L22.2097 20.7706L22.2022 20.7711C22.2022 20.7711 22.2038 20.7709 22.2086 20.7703C22.2219 20.7685 22.2499 20.7641 22.2873 20.7546C22.3649 20.7348 22.4643 20.698 22.5591 20.6334C22.6949 20.5408 22.9767 20.2959 22.976 19.5105C22.975 18.4163 22.9729 15.0387 22.9711 11.9348L22.9677 6.0005Z" fill="#0d6efd"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M25.0147 6.0005C25.0147 6.0005 25.0147 6.00037 24.0147 6.00001C23.0147 5.99965 23.0147 5.99978 23.0147 5.99978L23.0113 11.9341C23.0094 15.0381 23.0074 18.4153 23.0063 19.509C23.0051 20.9114 23.5776 21.796 24.2967 22.2861C24.6293 22.5128 24.9575 22.6306 25.2006 22.6926C25.3235 22.7239 25.4292 22.7421 25.5095 22.7528C25.5498 22.7582 25.5842 22.7617 25.6116 22.764C25.6254 22.7652 25.6375 22.7661 25.6478 22.7667L25.6619 22.7675L25.6679 22.7678L25.6719 22.768C25.6719 22.768 25.6732 22.768 25.7151 21.7689C25.757 20.7698 25.7582 20.7698 25.7582 20.7698L25.7594 20.7699L25.7617 20.77L25.7659 20.7702L25.7726 20.7706L25.7802 20.7711C25.7802 20.7711 25.7785 20.7709 25.7737 20.7703C25.7604 20.7685 25.7325 20.7641 25.695 20.7546C25.6175 20.7348 25.5181 20.698 25.4233 20.6334C25.2874 20.5408 25.0056 20.2959 25.0063 19.5105C25.0074 18.4163 25.0094 15.0387 25.0113 11.9348L25.0147 6.0005Z" fill="#0d6efd"/>
+                  </svg>                  
+                <div>
+                  <small class="text-muted">Respiration rate</small>
+                  <p class="fw-bold">16 bpm</p>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6  mb-3 d-flex align-items-start">
+                  <svg class="flex-shrink-0 me-2" width="3.4rem" height="3.4rem" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M18.9829 29.739L18.9814 27.9604L18.9763 21.7487L18.9662 9.3415C18.9638 6.38283 21.2004 3.98253 23.9618 3.98026C26.7232 3.978 28.9638 6.37464 28.9662 9.33331L28.9763 21.7405L28.9814 27.9527L28.9829 29.7308C30.813 31.1954 31.9859 33.4473 31.988 35.9737C31.9916 40.392 28.4128 43.9766 23.9945 43.9803C19.5763 43.9839 15.9916 40.4051 15.988 35.9868C15.9859 33.4604 17.1552 31.2066 18.9829 29.739ZM22.9584 21.4023C24.1541 21.7114 25.5195 22.0644 26.9766 22.0388L26.9749 19.9538L24.9749 19.9554C24.4226 19.9558 23.9745 19.5085 23.9741 18.9562C23.9736 18.4039 24.421 17.9558 24.9732 17.9554L26.9732 17.9538L26.9716 15.9538L24.9716 15.9554C24.4193 15.9558 23.9712 15.5085 23.9708 14.9562C23.9703 14.4039 24.4177 13.9558 24.97 13.9554L26.97 13.9538L26.9683 11.9538L24.9683 11.9554C24.416 11.9558 23.968 11.5085 23.9675 10.9562C23.9671 10.4039 24.4144 9.95585 24.9667 9.9554L26.9667 9.95376L26.9662 9.33495C26.9647 7.55975 25.6204 6.12176 23.9635 6.12312C22.3067 6.12448 20.9647 7.56466 20.9662 9.33986L20.9757 20.9813C21.5615 21.0412 22.2283 21.2136 22.9584 21.4023Z" fill="#0d6efd"/>
+                  </svg>                  
+                <div>
+                  <small class="text-muted">Temperature</small>
+                  <p class="fw-bold">36.8 C</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
+      <div class="row  me-4">
+        <div class="col-sm-12 col-lg-6" >
+          <div class="container bg-success p-4 shadow-sm m-3  d-block align-items-center d-sm-flex " style="border-radius: 25px; min-width: min-content;">
+            <svg class="flex-shrink-0 me-3 mb-2" width="3.8rem" height="3.8rem" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="48" height="48" />
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M6.81818 14.5002C6.36631 14.0483 6.36631 13.3157 6.81818 12.8638L13.3636 6.31822C13.8155 5.86634 14.5481 5.86634 15 6.31822C15.4518 6.7701 15.4518 7.50274 15 7.95462L14.1823 8.77229L18.2727 12.8627L21.5454 9.58995C21.9973 9.13808 22.7299 9.13807 23.1818 9.58995C23.6336 10.0418 23.6336 10.7745 23.1818 11.2264L21.545 12.8632L35.4545 26.773C37.132 28.4506 37.564 30.9021 36.7504 32.9782L37.9089 34.1367C38.5144 34.7423 38.7142 35.5999 38.5083 36.3718L41.1818 39.0454C41.6337 39.4973 41.6337 40.23 41.1818 40.6818C40.73 41.1337 39.9974 41.1337 39.5455 40.6818L36.8724 38.0086C36.1002 38.2151 35.242 38.0154 34.6362 37.4095L33.4777 36.251C31.4016 37.0645 28.9502 36.6325 27.2727 34.955L25.1328 32.8142L31.9 26.0469L20.1308 14.2774L14.7774 19.6309L17.1464 22H14.3181L13.3632 21.0451L11.7272 22.6811C11.2754 23.133 10.5428 23.133 10.0909 22.6811C9.63902 22.2293 9.63902 21.4966 10.0909 21.0447L13.3636 17.7719L9.27324 13.6815L8.45454 14.5002C8.00267 14.9521 7.27005 14.9521 6.81818 14.5002ZM12.7681 10.1865L16.8585 14.277L14.7778 16.3577L10.6874 12.2673L12.7681 10.1865ZM28.6869 33.5408L28.183 33.0368L33.5364 27.6833L34.0403 28.1872C35.1383 29.2853 35.4208 30.8901 34.8877 32.2488L32.7484 34.3881C31.3897 34.9213 29.7849 34.6388 28.6869 33.5408ZM35.4545 34.955C35.3799 35.0295 35.3039 35.1016 35.2264 35.1713L36.0504 35.9953C36.1731 36.118 36.372 36.118 36.4947 35.9953C36.6174 35.8726 36.6174 35.6737 36.4947 35.551L35.6707 34.7269C35.6011 34.8044 35.529 34.8805 35.4545 34.955Z" fill="#ffffff"/>
+              <path d="M16 28C16.5523 28 17 28.4477 17 29V31H19C19.5523 31 20 31.4477 20 32C20 32.5523 19.5523 33 19 33H17V35C17 35.5523 16.5523 36 16 36C15.4477 36 15 35.5523 15 35V33H13C12.4477 33 12 32.5523 12 32C12 31.4477 12.4477 31 13 31H15V29C15 28.4477 15.4477 28 16 28Z" fill="#ffffff"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M8.65965 37.6888C10.3871 39.8713 12.8 41.3922 15.4992 42C18.1987 41.3926 20.612 39.8717 22.3397 37.6892C24.0674 35.5067 25.006 32.7934 25 29.9984V26.3997C25 25.7633 24.7498 25.1529 24.3045 24.7029C23.8592 24.2528 23.2553 24 22.6256 24H8.37441C7.74469 24 7.14076 24.2528 6.69547 24.7029C6.25019 25.1529 6.00003 25.7633 6.00003 26.3997V29.9984C5.99395 32.7932 6.93225 35.5063 8.65965 37.6888ZM23 29.9984L23 30.0027C23.005 32.3476 22.2174 34.6214 20.7716 36.4479C19.4208 38.1542 17.5719 39.3738 15.4993 39.9395C13.427 39.3736 11.5784 38.1539 10.2279 36.4476C8.78229 34.6211 7.99493 32.3475 8.00003 30.0027V26.3997C8.00003 26.2869 8.04456 26.1829 8.11716 26.1096C8.18904 26.0369 8.282 26 8.37441 26H22.6256C22.718 26 22.811 26.0369 22.8828 26.1096C22.9554 26.1829 23 26.2869 23 26.3997L23 29.9984Z" fill="#ffffff"/>
+              </svg>    
+              <h2 class=" fw-bold my-auto text-white">Got vaccinated</h2>          
+          </div>
+          <div class="row d-flex">
+            <div class="col-xl-6 col-lg-12 me-0" >
+              <div class="container p-4 shadow-sm m-3  align-items-center bg-white border" style="border-radius: 25px; min-width: min-content; ">
+                  <div class="col-12">
+                  <h4 class=" fw-bold pb-2">Need an appointment?</h4> 
+                  <button type="button" class="btn  btn-primary  justify-content-center fw-bold rounded-pill shadow p-3 "  data-bs-toggle="modal" data-bs-target="#exampleModal5" aria-labelledby="exampleModalLabel" style="min-width: max-content;">Book one now!</button>         
+                  </div>
+              </div>
+            </div>
+            <div class="col-lg-12 col-xl-6" >
+              <div class="container p-4 shadow-sm m-3 d-flex justify-content-center bg-white border" style="border-radius: 25px; min-width: fit-content; ">
+                 
+                
+                  <button type="button" class="btn btn-lg btn-danger fw-bold rounded-pill shadow px-4 py-3 display "  >Call 123</button>         
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-lg-6">
+          <div class="container bg-white border p-4 shadow-sm m-3  align-items-center" style="border-radius: 25px; ">
+            
+              <h5 class=" fw-bold my-auto pb-2 border-bottom mb-3">Your doctors</h5>
+              <div class="col">
+                <div class="col d-flex my-2 align-items-center">
+                  <img src="{% static 'images/profile-image.png' %}" alt="" width="32" height="32" class="rounded-circle me-3">
+                  <small class=" fw-bold">Dr. Mahmoud El-Tahawy</small> 
+                </div>
+                <div class="col d-flex my-2 align-items-center">
+                  <img src="{% static 'images/profile-image.png' %}" alt="" width="32" height="32" class="rounded-circle me-3">
+                  <small class=" fw-bold">Dr. Saad Mounir</small> 
+                </div>
+                
+                <div class="col d-flex my-2 align-items-center">
+                  <img src="{% static 'images/profile-image.png' %}" alt="" width="32" height="32" class="rounded-circle me-3">
+                  <small class=" fw-bold">Dr. Mona Ali</small> 
+                </div>
+                
+                <div class="col d-flex my-2 align-items-center">
+                  <img src="{% static 'images/profile-image.png' %}" alt="" width="32" height="32" class="rounded-circle me-3">
+                  <small class=" fw-bold">Dr. Mohammad Adel</small> 
+                </div>
+              </div>         
+          </div>
+        </div>
+
+        
+
+       
+      </div>
+    </div>  
+  </div>
+  
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
