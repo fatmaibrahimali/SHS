@@ -206,7 +206,7 @@
                     
                   <div >
                     <small class="text-muted">Weight</small>
-                    <p class="fw-bold">65 kg</p>
+                    <p class="fw-bold">{{user_profile.weight}} kg</p>
                   </div>
                 
               </div>
@@ -217,7 +217,7 @@
                 </svg>   
                 <div>           
                   <small class="text-muted">Height</small>
-                  <p class="fw-bold">171 cm</p>
+                  <p class="fw-bold">{{user_profile.height}} cm</p>
                 </div>    
               </div>
 
@@ -232,7 +232,7 @@
                 </svg>
                 <div>
                   <small class="text-muted">Marital status</small>
-                  <p class="fw-bold">Single</p>
+                  <p class="fw-bold">{{user_profile.marital_status}}</p>
                 </div>
               </div>
               
@@ -251,7 +251,7 @@
                 </svg>
                 <div>
                   <small class="text-muted">Age</small>
-                  <p class="fw-bold">22 years</p>
+                  <p class="fw-bold">{{user_age}}</p>
                 </div>
               </div>
 
@@ -262,7 +262,7 @@
                   </svg>      
                 <div>
                   <small class="text-muted">Blood group</small>
-                  <p class="fw-bold">A+</p>
+                  <p class="fw-bold">{{user_profile.blood_type}}</p>
                 </div>
               </div>
 
@@ -277,7 +277,7 @@
                 </svg>
                 <div>
                   <small class="text-muted">Gender</small>
-                  <p class="fw-bold">Male</p>
+                  <p class="fw-bold">{{user_profile.sex}}</p>
                 </div>
               </div>
             </div>
@@ -297,7 +297,7 @@
                   
                 <div>
                   <small class="text-muted">Heart rate</small>
-                  <p class="fw-bold">75 bpm</p>
+                  <p class="fw-bold">{{user_vital.heart_rate}} bpm</p>
                 </div>
               </div>
               
@@ -308,7 +308,7 @@
                 </svg>
                 <div>
                   <small class="text-muted">Blood pressure</small>
-                  <p class="fw-bold">120/80</p>
+                  <p class="fw-bold">{{user_vital.blood_pressure_up}}/{{user_vital.blood_pressure_down}}</p>
                 </div>
               </div>
 
@@ -322,7 +322,7 @@
                   </svg>                  
                 <div>
                   <small class="text-muted">Respiration rate</small>
-                  <p class="fw-bold">16 bpm</p>
+                  <p class="fw-bold">{{user_vital.respiration_rate}} bpm</p>
                 </div>
               </div>
 
@@ -332,7 +332,7 @@
                   </svg>                  
                 <div>
                   <small class="text-muted">Temperature</small>
-                  <p class="fw-bold">36.8 C</p>
+                  <p class="fw-bold">{{user_vital.temprature}} C</p>
                 </div>
               </div>
             </div>

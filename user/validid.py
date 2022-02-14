@@ -55,7 +55,7 @@ class ID_Valid:
                 year += 1900
             else :
                 year += 2000
-            return [year, month, day]
+            return "{}-{}-{}".format(year, month, day)
 
     def get_city(self):
         if self.is_valid() :
@@ -64,8 +64,8 @@ class ID_Valid:
     def get_sex(self):
         if self.is_valid() :
             if int(self.id[12]) % 2 == 0:
-                return 'female'
-            return 'male'
+                return 'Female'
+            return 'Male'
 
     def __str__(self):
         return self.id

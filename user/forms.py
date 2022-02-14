@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import MyUser
+from .models import MyUser, UserProfile, UserVital
 
 
 
@@ -27,3 +27,17 @@ class Login_Form(forms.ModelForm):
             return {'username':username, 'password':password}
         raise forms.ValidationError("Invalid login")
             
+      
+            
+class UserProfileForm(forms.Form):
+    class Meta:
+        model = UserProfile
+        fields = '__all__'
+        exclude = ('user','birth_date', 'sex')
+
+
+class UserVitalForm(forms.Form):
+    class Meta:
+        model = UserVital
+        fields = '__all__'
+        exclude = ('user')
