@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt, csrf_protect, requires_csrf_token
 from .forms import Login_Form, SignUpForm, UserProfileForm, UserVitalForm
 from .models import MyUser, UserProfile, UserVital
+from staff.models import JobProfile, Appointments
 from datetime import date
  
  
@@ -115,6 +116,24 @@ def profile_edit(request):
     return render(request, 'user/edit.html', context)
 
 
+
+@login_required
+def book(request):
+    doctors = JobProfile.objects.filter(job = 'Dr')
+    return render(request, "book.html", {'doctors':doctors})
+
+
+@login_required
+def appoints(request):
+    apps = Appointments.objects.filter(patient = request.user)
+    return render(request, "appoints.html", {'apps':apps})
+
+@login_required
+def reserve(request, username): #username of doctor
+    doc = MyUser.objects.get(username = username)
+    pat = request.user
+    Appointments.objects.create(doctor = doc, patient=pat)
+    return redirect('user:appoints')
 
 
 def logout_view(request):

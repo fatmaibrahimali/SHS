@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'user.apps.UserConfig',
+    'staff.apps.StaffConfig',
     
     #django apps
     'django.contrib.admin',
@@ -86,6 +87,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        #'ENGINE': 'django.db.backends.mysql',
+        #'NAME': 'naeem',
+        #'USER': 'heba',
+        #'PASSWORD': 'asd123ASD',
+        #'HOST': 'database-1.czztbxxuol8u.eu-west-1.rds.amazonaws.com',
+        #'PORT': '3306',
     }
 }
 
