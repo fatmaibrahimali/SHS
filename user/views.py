@@ -3,9 +3,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt, csrf_protect, requires_csrf_token
-from .forms import Login_Form, SignUpForm, UserProfileForm, UserVitalForm
-from .models import MyUser, UserProfile, UserVital
-from staff.models import JobProfile, Appointments
+from .forms import Login_Form, SignUpForm, UserProfileForm
+from .models import MyUser, UserProfile
+from patient.models import UserVital
 from datetime import date
  
  
@@ -15,7 +15,7 @@ def get_age(BD):  #BD = DateField
     delta = today - BD
     yy    = delta.days//365
     mm    = (delta.days%365)//30
-    dd    = (delta.days%365)%30
+    #dd    = (delta.days%365)%30
     return yy,mm
 
 
@@ -98,42 +98,19 @@ def signup(request):
 
 @login_required
 def profile_edit(request):
-    
     user_profile = UserProfile.objects.get(user = request.user)
-    user_vital = UserVital.objects.get(user = request.user)
     
     if request.method == 'POST':
         profile_form = UserProfileForm(request.POST, instance = user_profile)
-        vital_form = UserVitalForm(request.POST, instance = user_vital)
-        if profile_form.is_valid() and vital_form.is_valid() :
+        if profile_form.is_valid():
             profile_form.save()
-            vital_form.save()
             return redirect(reverse('user:profile'))
     else:
         profile_form = UserProfileForm(instance = user_profile)
-        vital_form = UserVitalForm(instance = user_vital)
-    context = {'profile_form':profile_form, 'vital_form':vital_form}
+    context = {'profile_form':profile_form}
     return render(request, 'user/edit.html', context)
 
 
-
-@login_required
-def book(request):
-    doctors = JobProfile.objects.filter(job = 'Dr')
-    return render(request, "book.html", {'doctors':doctors})
-
-
-@login_required
-def appoints(request):
-    apps = Appointments.objects.filter(patient = request.user)
-    return render(request, "appoints.html", {'apps':apps})
-
-@login_required
-def reserve(request, username): #username of doctor
-    doc = MyUser.objects.get(username = username)
-    pat = request.user
-    Appointments.objects.create(doctor = doc, patient=pat)
-    return redirect('user:appoints')
 
 
 def logout_view(request):

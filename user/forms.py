@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import MyUser, UserProfile, UserVital
+from .models import MyUser, UserProfile
 
 
 
@@ -34,10 +34,3 @@ class UserProfileForm(forms.Form):
         model = UserProfile
         fields = '__all__'
         exclude = ('user','birth_date', 'sex')
-
-
-class UserVitalForm(forms.Form):
-    class Meta:
-        model = UserVital
-        fields = '__all__'
-        exclude = ('user')

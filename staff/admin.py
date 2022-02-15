@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import JobProfile,Appointments
+from .models import JobProfile
 
 admin.site.register(JobProfile)
-admin.site.register(Appointments)

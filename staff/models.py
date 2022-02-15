@@ -1,4 +1,3 @@
-from pyexpat import model
 from django.db import models
 from user.models import MyUser
 
@@ -22,8 +21,8 @@ class JobProfile(models.Model):
     user       = models.OneToOneField(MyUser, on_delete=models.CASCADE)
     job        = models.CharField(choices= JOBLIST, max_length=20, default="None")
     expeience  = models.IntegerField(default=0)
-    start_time = models.TimeField()
-    end_time   = models.TimeField()
+    start_time = models.TimeField(default = '00:00:00')
+    end_time   = models.TimeField(default = '00:00:00')
     degree     = models.CharField(choices= DEGREELIST, max_length=20, default="None")
     
     def __str__(self):
@@ -31,10 +30,3 @@ class JobProfile(models.Model):
     
     
     
-    
-class Appointments(models.Model):
-    doctor  = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name= 'doctor')
-    patient = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name= 'patient')
-    
-    def __str__(self):
-        return self.patient.username

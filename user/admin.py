@@ -1,7 +1,7 @@
 
 from django.contrib import admin, messages
 from django.contrib.auth.admin import UserAdmin
-from .models import MyUser, UserProfile, UserVital
+from .models import MyUser, UserProfile
 
         
 class CustomUserAdmin(UserAdmin):
@@ -32,10 +32,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     model = UserProfile
     readonly_fields=('user', 'birth_date', 'sex')
 
-class UserVitalAdmin(admin.ModelAdmin):
-    model = UserVital
-    readonly_fields=('user',)
+
     
 admin.site.register(MyUser, CustomUserAdmin)
 admin.site.register(UserProfile, UserProfileAdmin)
-admin.site.register(UserVital, UserVitalAdmin)
